@@ -2,7 +2,7 @@
   'use strict';
   angular.module('message-bus', []).factory('MessageBus', [
     '$http', '$httpParamSerializerJQLike', '$timeout', '$document', '$q', function($http, $httpParamSerializerJQLike, $timeout, $document, $q) {
-      var canceler, document0, hidden, isHidden, lastAjax, longPoller, me, pollTimeout, processMessages, shouldLongPoll, uniqueId;
+      var abortAjax, canceler, document0, hidden, isHidden, lastAjax, longPoller, me, pollTimeout, processMessages, shouldLongPoll, uniqueId;
       document0 = $document[0];
       uniqueId = function() {
         return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -107,6 +107,11 @@
           return me.longPoll = null;
         });
       };
+      abortAjax = function() {
+        canceler.resolve();
+        canceler = $q.defer();
+        return me.httpParams.timeout = canceler.promise;
+      };
       return me = {
         alwaysLongPoll: false,
         baseUrl: '/',
@@ -197,20 +202,22 @@
           return poll();
         },
         subscribe: function(channel, func, lastId) {
+          var callback;
           if (!me.started && !me.stopped) {
             me.start();
           }
           if (typeof lastId !== "number" || lastId < -1) {
             lastId = -1;
           }
-          me.callbacks.push({
+          me.callbacks.push(callback = {
             channel: channel,
             func: func,
             last_id: lastId
           });
           if (me.longPoll) {
-            return canceler.resolve();
+            abortAjax();
           }
+          return callback;
         },
         unsubscribe: function(channel, func) {
           var glob;
@@ -231,7 +238,7 @@
             return keep;
           });
           if (me.longPoll) {
-            return canceler.resolve();
+            return abortAjax();
           }
         }
       };

@@ -87,6 +87,11 @@ angular.module('message-bus', []).factory 'MessageBus', [
         , interval)
         me.longPoll = null
 
+    abortAjax = ->
+      canceler.resolve()
+      canceler = $q.defer()
+      me.httpParams.timeout = canceler.promise
+
     me =
       alwaysLongPoll:    false
       baseUrl:           '/'
@@ -163,12 +168,13 @@ angular.module('message-bus', []).factory 'MessageBus', [
 
         lastId = -1 if (typeof(lastId) isnt "number" || lastId < -1)
 
-        me.callbacks.push
+        me.callbacks.push callback =
           channel: channel
           func:    func
           last_id: lastId
 
-        canceler.resolve() if (me.longPoll)
+        abortAjax() if (me.longPoll)
+        return callback
 
       unsubscribe: (channel, func)->
         if  channel.indexOf('*', channel.length - 1) != -1
@@ -185,5 +191,5 @@ angular.module('message-bus', []).factory 'MessageBus', [
             keep = true
           keep
 
-        canceler.resolve() if (me.longPoll)
+         abortAjax() if (me.longPoll)
 ]
