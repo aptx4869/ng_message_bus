@@ -1,0 +1,38 @@
+{
+  "name": "ng-message-bus",
+  "description": "angular port for message_bus",
+  "bugs": {
+    "url": "https://github.com/aptx4869/ng_message_bus/issues",
+    "email": "ling548@gmail.com"
+  },
+  "homepage": "https://github.com/aptx4869/ng_message_bus",
+  "author": "aptx4869 <ling548@gmail.com>" ,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aptx4869/ng_message_bus.git"
+  },
+  "keywords": [ "longpoll", "message bus", "angularjs"],
+  "license": "MIT",
+  "version": "1.0.16",
+  "main": ["dist/ng-message-bus.min.js","dist/ng-message-bus.js"],
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "coveralls":             "latest",
+    "grunt":                 "latest",
+    "grunt-autoprefixer":    "latest",
+    "grunt-bower":           "latest",
+    "grunt-contrib-clean":   "latest",
+    "grunt-contrib-coffee":  "latest",
+    "grunt-contrib-concat":  "latest",
+    "grunt-contrib-copy":    "latest",
+    "grunt-contrib-jasmine": "latest",
+    "grunt-contrib-uglify":  "latest",
+    "grunt-contrib-watch":   "latest",
+    "grunt-web-server":      "latest",
+    "grunt-template-jasmine-istanbul": "latest",
+    "jasmine-jquery":                  "latest",
+    "load-grunt-tasks":                "latest"
+  }
+}

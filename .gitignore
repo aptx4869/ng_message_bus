@@ -1,0 +1,9 @@
+# IDEA
+/.idea
+*.iml
+
+# Ignore Node Modules
+/bower_components/*
+/compiled_spec/*
+/coverage/*
+/node_modules/*

@@ -1,0 +1,22 @@
+{
+  "name": "ng-message-bus",
+  "version": "1.0.16",
+  "authors": [
+    "aptx4869 <ling548@gmail.com>"
+  ],
+  "license": "MIT",
+  "main": ["dist/ng-message-bus.min.js","dist/ng-message-bus.js"],
+  "dependencies": {
+    "angular": "latest"
+  },
+  "devDependencies": {
+    "angular-mocks": "latest"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
