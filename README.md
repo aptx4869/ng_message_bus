@@ -41,7 +41,7 @@ For Rails, installing with [rails-assets](https://rails-assets.org/) is recommen
 In Gemfile:
 ```ruby
 source 'https://rails-assets.org' do
-  gem 'rails-assets-comment-core-library'
+  gem 'rails-assets-ng-message-bus'
 end
 ```
 
