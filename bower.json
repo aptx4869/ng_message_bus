@@ -5,7 +5,7 @@
     "aptx4869 <ling548@gmail.com>"
   ],
   "license": "MIT",
-  "main": ["dist/ng-message-bus.min.js","dist/ng-message-bus.js"],
+  "main": ["dist/ng-message-bus.js"],
   "dependencies": {
     "angular": "latest"
   },
