@@ -6,19 +6,18 @@
 [![Build Status: Linux](https://travis-ci.org/aptx4869/ng_message_bus.svg?branch=master)](https://travis-ci.org/aptx4869/ng_message_bus)
 [![Coverage Status](https://img.shields.io/coveralls/aptx4869/ng_message_bus.svg)](https://coveralls.io/r/aptx4869/ng_message_bus?branch=master)
 
+[message_bus](https://github.com/SamSaffron/message_bus) web client for AngularJS
+
 ## Example
 
 ```coffeescript
 
-angular.module 'some_app', [
-  'message-bus'
-]
-.controller('noticeController', [
+angular.module('some_app', ['message-bus']).controller('noticeController', [
   '$scope', 'MessageBus'
   ($scope, MessageBus)->
     MessageBus.start(httpParams: ignoreLoadingBar: true)
 
-    subscribeFn = (n) -> $scope.notifications = n
+    subscribeFn = (notice) -> $scope.notice = notice
 
     $scope.subscribe = ->
       MessageBus.subscribe "/notice", subscribeFn
