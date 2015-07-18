@@ -346,3 +346,26 @@ describe 'MessageBus', ->
     it 'runs without error', ->
       triggerVisibilityChange = -> $document.triggerHandler 'visibilitychange'
       expect(triggerVisibilityChange).not.toThrow()
+
+describe 'isHidden', ->
+  MessageBus = $http = $timeout = $httpBackend = url = null
+  channel = '/some_channel'
+  'hidden webkitHidden msHidden mozHidden msHidden'.split(' ').forEach (hidden)->
+    describe hidden, ->
+
+      beforeEach ->
+        module 'message-bus'
+        document[hidden] = true
+
+        inject (_MessageBus_, _$http_, _$timeout_, $injector) ->
+          MessageBus   = _MessageBus_
+          $http        = _$http_
+          $timeout     = _$timeout_
+          $httpBackend = $injector.get('$httpBackend')
+          url = "/message-bus/#{MessageBus.clientId}/poll?"
+
+      it 'posts params dlp=t', ->
+        $httpBackend.expectPOST("#{url}dlp=t").respond()
+        MessageBus.subscribe(channel, ->)
+        $timeout.flush()
+        expect($httpBackend.flush).not.toThrow()
