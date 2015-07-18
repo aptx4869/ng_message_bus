@@ -14,7 +14,7 @@
   "keywords": [ "longpoll", "message bus", "angularjs"],
   "license": "MIT",
   "version": "1.0.16",
-  "main": ["dist/ng-message-bus.min.js","dist/ng-message-bus.js"],
+  "main": ["dist/ng-message-bus.js"],
   "scripts": {
     "test": "grunt test"
   },
