@@ -1,4 +1,5 @@
 # ng-message-bus
+
 [![NPM version](https://badge.fury.io/js/ng-message-bus.svg)](http://badge.fury.io/js/ng-message-bus)
 [![Bower version](https://badge.fury.io/bo/ng-message-bus.svg)](http://badge.fury.io/bo/ng-message-bus)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
@@ -29,6 +30,7 @@ angular.module('some_app', ['message-bus']).controller('noticeController', [
 ```
 
 ## Installing
+
 With [bower](http://bower.io/):
 `bower install ng-message-bus`
 
@@ -38,6 +40,7 @@ With [npm](https://www.npmjs.org/):
 For Rails, installing with [rails-assets](https://rails-assets.org/) is recommended
 
 In Gemfile:
+
 ```ruby
 source 'https://rails-assets.org' do
   gem 'rails-assets-ng-message-bus'
@@ -45,4 +48,5 @@ end
 ```
 
 ## License
+
 Licensed under the MIT license

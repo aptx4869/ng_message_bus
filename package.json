@@ -19,10 +19,11 @@
     "test": "grunt test"
   },
   "devDependencies": {
+    "angular":               "latest",
+    "angular-mocks":         "latest",
     "coveralls":             "latest",
     "grunt":                 "latest",
     "grunt-autoprefixer":    "latest",
-    "grunt-bower":           "latest",
     "grunt-contrib-clean":   "latest",
     "grunt-contrib-coffee":  "latest",
     "grunt-contrib-concat":  "latest",
@@ -30,9 +31,9 @@
     "grunt-contrib-jasmine": "latest",
     "grunt-contrib-uglify":  "latest",
     "grunt-contrib-watch":   "latest",
-    "grunt-web-server":      "latest",
     "grunt-template-jasmine-istanbul": "latest",
     "jasmine-jquery":                  "latest",
+    "jquery":                          "latest",
     "load-grunt-tasks":                "latest"
   }
 }

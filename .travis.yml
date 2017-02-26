@@ -1,12 +1,10 @@
 language: node_js
 node_js:
-  - "0.10"
+  - "7.5"
 before_install:
-  - npm install npm@1.4 -g
+  - npm install npm -g
 before_script:
-  - npm install -g bower
   - npm install -g grunt-cli
-  - bower install
 script:
   - grunt ci
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js

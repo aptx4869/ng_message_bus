@@ -39,7 +39,12 @@ angular.module('message-bus', []).factory 'MessageBus', [
             try
               callback.func(message.data)
             catch e
-              console.log "MESSAGE BUS FAIL: callback #{callback.channel} caused exception #{e.message}"
+              console.log(
+                "MESSAGE BUS FAIL: callback
+                #{callback.channel}
+                caused exception
+                #{e.message}"
+              )
           if (message.channel is "/__status")
             if (message.data[callback.channel] isnt undefined)
               callback.last_id = message.data[callback.channel]
@@ -53,17 +58,17 @@ angular.module('message-bus', []).factory 'MessageBus', [
 
       url = me.baseUrl + "message-bus/" + me.clientId + "/poll?" + ((if not shouldLongPoll() or not me.enableLongPolling then "dlp=t" else ""))
       $http.post(url, $httpParamSerializerJQLike(data), me.httpParams)
-      .success((messages, status, headers, config)->
-          me.failCount = 0
-          if me.paused
-            if messages
-              me.later.push messages
+      .then((response)->
+        messages = response.data
+        me.failCount = 0
+        if me.paused
+          if messages
+            me.later.push messages
 
-          else
-            gotData = processMessages(messages)
-
-      ).error((messages, status, headers, config)->
-        if status is 0
+        else
+          gotData = processMessages(messages)
+      ).catch((response)->
+        if response.status is 0
           aborted = true
         else
           me.failCount += 1
@@ -117,8 +122,19 @@ angular.module('message-bus', []).factory 'MessageBus', [
         console.log("Stopped: " + me.stopped + " Started: " + me.started)
         console.log("Current callbacks")
         console.log(me.callbacks)
-        console.log("Total ajax calls: #{me.totalAjaxCalls} Recent failure count: #{me.failCount} Total failures: #{me.totalAjaxFailures}")
-        console.log("Last ajax call: " + (new Date() - lastAjax) / 1000  + " seconds ago")
+        console.log(
+          "Total ajax calls:
+          #{me.totalAjaxCalls}
+          Recent failure count:
+          #{me.failCount}
+          Total failures:
+          #{me.totalAjaxFailures}"
+        )
+        console.log(
+          "Last ajax call:
+          #{(new Date() - lastAjax) / 1000}
+          seconds ago"
+        )
 
       pause: -> me.paused = true; return
 

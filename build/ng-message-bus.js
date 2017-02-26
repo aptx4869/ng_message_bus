@@ -36,13 +36,13 @@
         angular.forEach(messages, function(message) {
           gotData = true;
           return angular.forEach(me.callbacks, function(callback) {
-            var e;
+            var e, error;
             if (callback.channel === message.channel) {
               callback.last_id = message.message_id;
               try {
                 callback.func(message.data);
-              } catch (_error) {
-                e = _error;
+              } catch (error) {
+                e = error;
                 console.log("MESSAGE BUS FAIL: callback " + callback.channel + " caused exception " + e.message);
               }
             }
@@ -62,7 +62,9 @@
         lastAjax = new Date();
         me.totalAjaxCalls += 1;
         url = me.baseUrl + "message-bus/" + me.clientId + "/poll?" + (!shouldLongPoll() || !me.enableLongPolling ? "dlp=t" : "");
-        return $http.post(url, $httpParamSerializerJQLike(data), me.httpParams).success(function(messages, status, headers, config) {
+        return $http.post(url, $httpParamSerializerJQLike(data), me.httpParams).then(function(response) {
+          var messages;
+          messages = response.data;
           me.failCount = 0;
           if (me.paused) {
             if (messages) {
@@ -71,8 +73,8 @@
           } else {
             return gotData = processMessages(messages);
           }
-        }).error(function(messages, status, headers, config) {
-          if (status === 0) {
+        })["catch"](function(response) {
+          if (response.status === 0) {
             return aborted = true;
           } else {
             me.failCount += 1;
@@ -139,7 +141,7 @@
           console.log("Current callbacks");
           console.log(me.callbacks);
           console.log("Total ajax calls: " + me.totalAjaxCalls + " Recent failure count: " + me.failCount + " Total failures: " + me.totalAjaxFailures);
-          return console.log("Last ajax call: " + (new Date() - lastAjax) / 1000 + " seconds ago");
+          return console.log("Last ajax call: " + ((new Date() - lastAjax) / 1000) + " seconds ago");
         },
         pause: function() {
           me.paused = true;

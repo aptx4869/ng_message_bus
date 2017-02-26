@@ -336,11 +336,13 @@ describe 'MessageBus', ->
         enableLongPolling: false
         maxPollInterval: 99
       MessageBus.subscribe(channel, callback.fn)
-      for i in [1...4]
-        $timeout.flush()
-        $httpBackend.flush()
 
     it 'sets interval to maxPollInterval', ->
+      for i in [1...4]
+        $timeout.flush(99)
+        expect(-> $httpBackend.flush()).toThrow()
+        $timeout.flush()
+        expect(-> $httpBackend.flush()).not.toThrow()
 
   describe 'visibilitychange', ->
     it 'runs without error', ->
