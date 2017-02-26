@@ -5,7 +5,7 @@
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 [![License](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![Build Status: Linux](https://travis-ci.org/aptx4869/ng_message_bus.svg?branch=master)](https://travis-ci.org/aptx4869/ng_message_bus)
-[![Coverage Status](https://img.shields.io/coveralls/aptx4869/ng_message_bus.svg)](https://coveralls.io/r/aptx4869/ng_message_bus?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/aptx4869/ng_message_bus/badge.svg?branch=master)](https://coveralls.io/github/aptx4869/ng_message_bus?branch=master)
 
 [message_bus](https://github.com/SamSaffron/message_bus) web client for AngularJS
 

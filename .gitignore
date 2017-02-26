@@ -1,6 +1,7 @@
 # IDEA
 /.idea
 *.iml
+*~
 
 # Ignore Node Modules
 /bower_components/*

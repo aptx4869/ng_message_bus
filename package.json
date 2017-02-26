@@ -13,7 +13,7 @@
   },
   "keywords": [ "longpoll", "message bus", "angularjs"],
   "license": "MIT",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "main": "dist/ng-message-bus.js",
   "scripts": {
     "test": "grunt test"
